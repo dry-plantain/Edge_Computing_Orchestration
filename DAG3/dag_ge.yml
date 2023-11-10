@@ -53,10 +53,10 @@ spec:
   
   - name: loop
     container:
-      image: docker.io/binbinweng/loop:v1
+      image: docker.io/binbinweng/loop:v2
   - name: sort
     container:
-      image: docker.io/binbinweng/sort:v1
+      image: docker.io/binbinweng/sort:v2
   - name: nestloop
     container:
-      image: docker.io/binbinweng/nestloop:v1
+      image: docker.io/binbinweng/nestloop:v2
