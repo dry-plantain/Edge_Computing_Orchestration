@@ -17,4 +17,4 @@ EXPOSE 80
 ENV NAME World
 
 # Run script.py when the container launches
-CMD ["python", "loop.py","27648"]
+CMD ["python", "loop.py","4096"]
