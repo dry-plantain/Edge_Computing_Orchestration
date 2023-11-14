@@ -73,7 +73,7 @@ def DUPRS1(EST, EFT, pos, pscheduling, qlist, T, c, E, n, p,latency,frequency,pr
         x,sl = HEFT(EST,EFT,idx+1,pscheduling.copy(),qlist,T,c,E,n,p,frequency,processorinfo)
     return EA, EFT[qlist[-1]-1][1]
 
-def DUPRSsecond(EST, EFT, pscheduling, qlist, T, c, E, n, p,frequency,processorinfo,proc_freq):
+def DUPRS2(EST, EFT, pscheduling, qlist, T, c, E, n, p,frequency,processorinfo,proc_freq):
     EA=0
     for idx, i  in reversed(list(enumerate(qlist))):
         if idx == len(qlist)-1:
@@ -147,7 +147,7 @@ if __name__ == "__main__":
     print("Energy consumption is: ",EA)
     print("scheduling length is: ",sl)
 
-    EA, sl = DUPRSsecond(EST,EFT,pscheduling,qlist,T,c,E,n,p,frequency,processorinfo,proc_freq)
+    EA, sl = DUPRS2(EST,EFT,pscheduling,qlist,T,c,E,n,p,frequency,processorinfo,proc_freq)
     print("Phase3: ")
     print("Energy consumption is: ",EA)
     print("scheduling length is: ",sl)
