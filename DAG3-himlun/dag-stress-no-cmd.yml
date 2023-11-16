@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: stress-workflow
+spec:
+  entrypoint: diamond
+  templates:
+  - name: diamond
+    dag:
+      tasks:
+      - name: task1
+        template: stress
+      - name: task2
+        template: stress
+        depends: "task1"
+      - name: task3
+        template: stress
+        depends: "task1"
+      - name: task4
+        template: stress
+        depends: "task1"
+      - name: task5
+        template: stress
+        depends: "task1"
+      - name: task6
+        template: stress
+        depends: "task1"
+      - name: task7
+        template: stress
+        depends: "task3"
+      - name: task8
+        template: stress
+        depends: "task2 && task4 && task6"
+      - name: task9
+        template: stress
+        depends: "task2 && task4 && task5"
+      - name: task10
+        template: stress
+        depends: "task7 && task8 && task9"
+  - name: stress
+    container:
+      image: hbista2/stress-with-args:latest
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              - raspberrypi-4b1
+              - raspberyypi-4b2
+              - raspberrypi-3b

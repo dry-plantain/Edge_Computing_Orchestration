@@ -1,0 +1,61 @@
+# DAG GE - HIMLUN
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: dag-test-cs598-ge-
+spec:
+  entrypoint: diamond
+  templates:
+  - name: diamond
+    dag:
+      tasks:
+      - name: task1
+        template: sort
+      - name: task2 
+        template: nestloop
+        depends: "task1"
+      - name: task3
+        template: nestloop
+        depends: "task1"
+      - name: task4
+        template: sort
+        depends: "task1"
+      - name: task5
+        template: sort
+        depends: "task1"
+      - name: task6
+        template: nestloop
+        depends: "task2"
+      - name: task7
+        template: nestloop
+        depends: "task3 && task6"
+      - name: task8
+        template: loop
+        depends: "task4 && task6"
+      - name: task9
+        template: nestloop
+        depends: "task6 && task5"
+      - name: task10
+        template: nestloop
+        depends: "task7"
+      - name: task11
+        template: nestloop
+        depends: "task8 && task10"
+      - name: task12
+        template: sort
+        depends: "task9 && task10"
+      - name: task13
+        template: nestloop
+        depends: "task11"
+      - name: task14
+        template: loop
+        depends: "task12 && task13"
+  - name: loop
+    container:
+      image: hbista2/loop:v2
+  - name: sort
+    container:
+      image: hbista2/sort:v2
+  - name: nestloop
+    container:
+      image: hbista2/nestloop:v2

@@ -1,0 +1,65 @@
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   name: argooperatorrole
+#   namespace: argo
+# rules:
+#   - apiGroups:
+#       - argoproj.io
+#     resources:
+#       - "*"
+#     verbs:
+#       - get
+#       - patch
+#       - create 
+#       - list 
+#       - delete
+
+# # role.yaml
+# apiVersion: rbac.authorization.k8s.io/v1
+# kind: Role
+# metadata:
+#   name: argooperatorrole
+#   namespace: argo
+# rules:
+#   - apiGroups:
+#       - argoproj.io
+#     resources:
+#       - workflows
+#       - workflows/finalizers
+#       - workflows/status
+#       - clusterworkflowtemplates
+#       - workflows/templates
+#       - events
+#     verbs:
+#       - get
+#       - list
+#       - watch
+#       - create
+#       - update
+#       - patch
+#       - delete
+#       - deletecollection
+
+# role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argooperatorrole
+  namespace: argo
+rules:
+  - apiGroups:
+      - argoproj.io
+    resources:
+      - workflows
+      - workflows/finalizers
+      - workflows/status
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+      - deletecollection
