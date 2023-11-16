@@ -60,7 +60,7 @@ spec:
           - matchExpressions:
             - key: kubernetes.io/hostname
               operator: In
-              values:
+              values: # replace with your node names
               - raspberrypi-4b1
-              - raspberyypi-4b2
+              - raspberrypi-4b2
               - raspberrypi-3b

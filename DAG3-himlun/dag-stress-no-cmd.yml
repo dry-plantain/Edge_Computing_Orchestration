@@ -49,5 +49,5 @@ spec:
               operator: In
               values:
               - raspberrypi-4b1
-              - raspberyypi-4b2
+              - raspberrypi-4b2
               - raspberrypi-3b
